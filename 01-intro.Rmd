@@ -1,0 +1,25 @@
+# Introduction {#intro}
+
+
+## What is Error?
+
+Explain that measurement error often comes in the shape of uncertainty, which is present in almost all data.
+
+
+
+## Why and When do I Have to Worry?
+
+* Triple whammy of ME
+* When is error a problem?
+* Bias versus variance 
+* Is it sometimes better not to model the error?
+
+
+It is surprising how many phenomena in statistics and its applications can be viewed through the measurement error lens. A prominant example is the concept of heritability in genetics and evolutionary biology, as we will explain in Section \@ref(sec:heritability).
+
+## Take-Home Messages of This Book
+
+
+## Outlook
+ 
+ What we are going to do.
