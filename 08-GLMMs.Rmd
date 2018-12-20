@@ -1,0 +1,14 @@
+# Generalized Linear (Mixed) Models {#GLMMs}
+
+## Classical error
+
+### Error in a covariate
+* Correlated covariates
+
+### Error in the response
+
+## Berkson error
+
+### Error in a covariate
+
+### Error in the response

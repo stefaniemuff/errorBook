@@ -1,0 +1,13 @@
+# Types of Errors {#errortypes}
+
+## Continuous Variables
+Two fundamentally different error types 
+
+### Classical Measurement Error
+
+### Berkson Measurement Error
+
+
+
+
+## Categorical and Count Variables
