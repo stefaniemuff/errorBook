@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Error Modeling in Regression Analyses</title>
+  <title>Applied Error Modeling in Regression Analyses</title>
   <meta name="description" content="This is a first start to write the book about applied error modeling using R. The output format for this example is bookdown::gitbook.">
   <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
 
-  <meta property="og:title" content="Error Modeling in Regression Analyses" />
+  <meta property="og:title" content="Applied Error Modeling in Regression Analyses" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="images/dice.png" />
@@ -17,7 +17,7 @@
   <meta name="github-repo" content="stefaniemuff/errorBook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Error Modeling in Regression Analyses" />
+  <meta name="twitter:title" content="Applied Error Modeling in Regression Analyses" />
   
   <meta name="twitter:description" content="This is a first start to write the book about applied error modeling using R. The output format for this example is bookdown::gitbook." />
   <meta name="twitter:image" content="images/dice.png" />
@@ -33,7 +33,7 @@
   
   
 
-<link rel="next" href="whom-is-this-book-for.html">
+<link rel="next" href="intro.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -100,9 +100,7 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
-<li class="chapter" data-level="" data-path="whom-is-this-book-for.html"><a href="whom-is-this-book-for.html"><i class="fa fa-check"></i>Whom is This Book for?</a></li>
-</ul></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
 <li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
 <li class="chapter" data-level="1.1" data-path="what-is-error.html"><a href="what-is-error.html"><i class="fa fa-check"></i><b>1.1</b> What is Error?</a></li>
 <li class="chapter" data-level="1.2" data-path="why-and-when-do-i-have-to-worry.html"><a href="why-and-when-do-i-have-to-worry.html"><i class="fa fa-check"></i><b>1.2</b> Why and When do I Have to Worry?</a></li>
@@ -148,7 +146,7 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Error Modeling in Regression Analyses</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Applied Error Modeling in Regression Analyses</a>
           </h1>
         </div>
 
@@ -157,16 +155,16 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 
             <section class="normal" id="section-">
 <div id="header">
-<h1 class="title">Error Modeling in Regression Analyses</h1>
+<h1 class="title">Applied Error Modeling in Regression Analyses</h1>
 <h3 class="subtitle"><em>An Introduction with Examples in R</em></h3>
 <h4 class="author"><em>Stefanie Muff and Lukas F. Keller</em></h4>
 <h4 class="date"><em>2018-12-21</em></h4>
 </div>
 <div id="preface" class="section level1 unnumbered">
 <h1>Preface</h1>
-<p>This is a <em>first draft</em> of a book that deals with effects and cures of measurement error in variables of regression models. The aim of the book is not only to point out problems and biases that are induced by measurement error, but mainly to bridge the gap between theory and the applications. The idea is to provide a basic toolkit of methods to make error modeling accessible to a broad audience in the applied sciences. The many examples and are analyzed</p>
-<p>Interestingly, the presence and effects of measurement error and misclassification in covariates and the response of regression models have been recognized already more than a century ago (see e.g. …). Thanks to huge efforts of many researchers, the consequences of ignoring measurement error or misclassification are known in many settings, at least in theory. Moreover, a huge variety of methods to appropriately deal with measurement error exist, and several textbooks in statistics are devoted to the topic <span class="citation">(Fuller <a href="#ref-fuller1987">1987</a>; Gustafson <a href="#ref-gustafson2004">2004</a>; Carroll et al. <a href="#ref-carroll.etal2006">2006</a>; Yi <a href="#ref-yi2017">2017</a>)</span>. Despite this, many of error modelig methods go largely unused. Why is this the case? We can only hypothesize about the reasons, but the problem might have many factes. On one hand, measurement error is often nothing that seems worth paying attention to, and given that even most introductory textbooks in applied statistics do not discuss measurement error, it is not surprising that entire generations of young scientists get educated in statistics and data analysis without ever having hard of it. On the other hand, error modeling methods can quickly become very challenging. Unless the problem is a very standard case, it is often necessary to formulate a new model, and it may be all but obvious what the model should be, let alone how to fit it. But even if the error model is relatively simple, like a standard classical measurement model in a covariate of a regression model (see Section <a href="sec-errortypes.html#sec:errortypes">2.1</a>), some extra-effort and special software (R) packages are required. As a consequence, the hurdle to get started with the proper handling of measurement error in data is much higher than using the standard tools for regression modeling.</p>
-<p>readily-available software solutions to fit the model are no</p>
+<p>This is a <em>first draft</em> of a book that deals with effects and cures of measurement error in variables of regression models. The aim of the book is not only to discuss a broad range of problems and biases that are induced by measurement error, but mainly to bridge the gap between theory and the applications. The idea is to provide a basic toolkit of methods to make error modeling accessible to a broad audience in the applied sciences. The many examples discussed and analyzed in the book all come with the associated R code.</p>
+<p>Interestingly, the presence and effects of measurement error and misclassification in covariates and the response of regression models have been recognized already more than a century ago (see e.g. …). Thanks to huge efforts of many researchers, the consequences of ignoring measurement error or misclassification are known in many settings, at least in theory. Moreover, a huge variety of methods to appropriately deal with measurement error exist, and several textbooks in statistics are devoted to the topic <span class="citation">(Fuller <a href="#ref-fuller1987">1987</a>; Gustafson <a href="#ref-gustafson2004">2004</a>; Carroll et al. <a href="#ref-carroll.etal2006">2006</a>; Yi <a href="#ref-yi2017">2017</a>)</span>. Despite this, most – if not all – error modelig methods go largely unused. Why is this the case? We can only hypothesize about the reasons, but the problem seems to have many factes. On one hand, measurement error is often nothing that seems worth paying attention to, and given that even most introductory textbooks in applied statistics do not discuss measurement error, it is not surprising that entire generations of young scientists get educated in statistics and data analysis without ever having hard of the problems it may cause. On the other hand, error modeling methods can quickly become very challenging. Unless the problem is a very standard case, it is often necessary to formulate a new model, and it may be all but obvious what the model should be, let alone how to implement an actual procedure to fit it. But even if the error model is relatively simple, like a standard classical measurement model in a covariate of a regression model (see Section <a href="sec-errortypes.html#sec:errortypes">2.1</a>), some extra-effort and more specialist software packages are required. As a consequence, the hurdle to get started with the proper handling of measurement error in data is much higher than for standard regression analyses.</p>
+<p>If you are reading these lines, we assume that you either have a very specific measurement error problem at hand, or you would like to get a gentle introduction into the topic and its applications. …</p>
 <p>When we say ``error’’, we do not only mean actual mistakes in the data that are used to fit regression models.</p>
 <p>Kind of uncertainty, noise or imprecision that are present in the data that we use to fit our models.</p>
 <!-- * A ton of methods exist -->
@@ -175,7 +173,22 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <!--     + Problems and methods unknown   -->
 <!--     + Often assumed that effect estimates are conservative -->
 <!--     + Solutions often complicated -->
-<!--     + Methods not accessible --> 
+<!--     + Methods not accessible -->
+<!-- ## Whom is This Book for? {-} -->
+<p>N. Breslow, <em>Lessons in Biostatistics</em> (2014) <span class="citation">(Breslow <a href="#ref-breslow2014">2014</a>)</span> wrote</p>
+<blockquote>
+<p>Obviously, [. . .] the <em>best</em> method of dealing with measurement error was to avoid it.</p>
+</blockquote>
+<p>I say:</p>
+<blockquote>
+<p>The <em>second best</em> method of dealing with measurement error is to properly account for it.</p>
+</blockquote>
+<p>We might develop a package. In this case, the <strong>package-to-be-developed</strong> package can be installed from CRAN or Github:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;package-to-be-developed&quot;</span>)
+<span class="co"># or the development version</span>
+<span class="co"># devtools::install_github(&quot;stefaniemuff/package-to-be-developed&quot;)</span></code></pre></div>
+<p>Follow me on Twitter! <a href="https://twitter.com/stefaniemuff">@StefanieMuff</a></p>
+
 </div>
 <h3>References</h3>
 <div id="refs" class="references">
@@ -191,6 +204,9 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <div id="ref-yi2017">
 <p>Yi, G. Y. 2017. <em>Statistical Analysis with Measurement Error or Misclassification: Strategy, Method and Application</em>. New York: Springer.</p>
 </div>
+<div id="ref-breslow2014">
+<p>Breslow, N. E. 2014. “Lessons in Biostatistics.” In <em>Past, Present and Future of Statistical Science</em>, edited by X. Lin, Ch. Genest, D. L. Banks, G. Molenberghs, D. W. Scott, and J. Wang, 335–47. CRC Press.</p>
+</div>
 </div>
             </section>
 
@@ -198,7 +214,7 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
         </div>
       </div>
 
-<a href="whom-is-this-book-for.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="intro.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

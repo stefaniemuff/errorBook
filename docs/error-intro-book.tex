@@ -24,7 +24,7 @@
 \usepackage[margin=1in]{geometry}
 \usepackage{hyperref}
 \hypersetup{unicode=true,
-            pdftitle={Error Modeling in Regression Analyses},
+            pdftitle={Applied Error Modeling in Regression Analyses},
             pdfauthor={Stefanie Muff and Lukas F. Keller},
             pdfborder={0 0 0},
             breaklinks=true}
@@ -116,7 +116,7 @@
 }
 
 \setlength{\droptitle}{-2em}
-  \title{Error Modeling in Regression Analyses}
+  \title{Applied Error Modeling in Regression Analyses}
   \pretitle{\vspace{\droptitle}\centering\huge}
   \posttitle{\par}
 \subtitle{An Introduction with Examples in R}
@@ -162,11 +162,12 @@
 
 This is a \emph{first draft} of a book that deals with effects and cures
 of measurement error in variables of regression models. The aim of the
-book is not only to point out problems and biases that are induced by
-measurement error, but mainly to bridge the gap between theory and the
-applications. The idea is to provide a basic toolkit of methods to make
-error modeling accessible to a broad audience in the applied sciences.
-The many examples and are analyzed
+book is not only to discuss a broad range of problems and biases that
+are induced by measurement error, but mainly to bridge the gap between
+theory and the applications. The idea is to provide a basic toolkit of
+methods to make error modeling accessible to a broad audience in the
+applied sciences. The many examples discussed and analyzed in the book
+all come with the associated R code.
 
 Interestingly, the presence and effects of measurement error and
 misclassification in covariates and the response of regression models
@@ -177,34 +178,34 @@ settings, at least in theory. Moreover, a huge variety of methods to
 appropriately deal with measurement error exist, and several textbooks
 in statistics are devoted to the topic
 \citep{fuller1987, gustafson2004, carroll.etal2006, yi2017}. Despite
-this, many of error modelig methods go largely unused. Why is this the
-case? We can only hypothesize about the reasons, but the problem might
-have many factes. On one hand, measurement error is often nothing that
-seems worth paying attention to, and given that even most introductory
-textbooks in applied statistics do not discuss measurement error, it is
-not surprising that entire generations of young scientists get educated
-in statistics and data analysis without ever having hard of it. On the
-other hand, error modeling methods can quickly become very challenging.
-Unless the problem is a very standard case, it is often necessary to
-formulate a new model, and it may be all but obvious what the model
-should be, let alone how to fit it. But even if the error model is
+this, most -- if not all -- error modelig methods go largely unused. Why
+is this the case? We can only hypothesize about the reasons, but the
+problem seems to have many factes. On one hand, measurement error is
+often nothing that seems worth paying attention to, and given that even
+most introductory textbooks in applied statistics do not discuss
+measurement error, it is not surprising that entire generations of young
+scientists get educated in statistics and data analysis without ever
+having hard of the problems it may cause. On the other hand, error
+modeling methods can quickly become very challenging. Unless the problem
+is a very standard case, it is often necessary to formulate a new model,
+and it may be all but obvious what the model should be, let alone how to
+implement an actual procedure to fit it. But even if the error model is
 relatively simple, like a standard classical measurement model in a
 covariate of a regression model (see Section \ref{sec:errortypes}), some
-extra-effort and special software (R) packages are required. As a
+extra-effort and more specialist software packages are required. As a
 consequence, the hurdle to get started with the proper handling of
-measurement error in data is much higher than using the standard tools
-for regression modeling.
+measurement error in data is much higher than for standard regression
+analyses.
 
-readily-available software solutions to fit the model are no
+If you are reading these lines, we assume that you either have a very
+specific measurement error problem at hand, or you would like to get a
+gentle introduction into the topic and its applications. \ldots{}
 
 When we say ``error'', we do not only mean actual mistakes in the data
 that are used to fit regression models.
 
 Kind of uncertainty, noise or imprecision that are present in the data
 that we use to fit our models.
-
-\section*{Whom is This Book for?}\label{whom-is-this-book-for}
-\addcontentsline{toc}{section}{Whom is This Book for?}
 
 N. Breslow, \emph{Lessons in Biostatistics} (2014) \citep{breslow2014}
 wrote
