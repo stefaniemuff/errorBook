@@ -24,7 +24,7 @@
 \usepackage[margin=1in]{geometry}
 \usepackage{hyperref}
 \hypersetup{unicode=true,
-            pdftitle={Applied Error Modeling Using R},
+            pdftitle={Applied Error Modeling in Regression Using R},
             pdfauthor={Stefanie Muff and Lukas F. Keller},
             pdfborder={0 0 0},
             breaklinks=true}
@@ -116,7 +116,7 @@
 }
 
 \setlength{\droptitle}{-2em}
-  \title{Applied Error Modeling Using R}
+  \title{Applied Error Modeling in Regression Using R}
   \pretitle{\vspace{\droptitle}\centering\huge}
   \posttitle{\par}
   \author{Stefanie Muff and Lukas F. Keller}
@@ -124,7 +124,7 @@
   \postauthor{\par}
   \predate{\centering\large\emph}
   \postdate{\par}
-  \date{2018-12-20}
+  \date{2018-12-21}
 
 \usepackage{booktabs}
 \usepackage{amsthm}
@@ -160,41 +160,48 @@
 \addcontentsline{toc}{chapter}{Preface}
 
 This is a \emph{first draft} of a book that deals with effects and cures
-of measurement error in variables of regression models.
+of measurement error in variables of regression models. The main aim is
+to raise awareness of possible problems and biases induced by
+measurement error, and to introduce a toolkit of methods and R code to
+make error modeling accessible to a broad audience in the applied
+sciences.
 
-The presence and effects of measurement error and misclassification in
-covariates and the response of regression models have been recognized
-already more than a century ago. Thanks to huge efforts of plenty of
-researchers, in many settings, the consequences of ignoring measurement
-error or misclassification are known, at least in theory.
+Interestingly, the presence and effects of measurement error and
+misclassification in covariates and the response of regression models
+have been recognized already more than a century ago (see e.g.
+\ldots{}). Thanks to huge efforts of many researchers, the consequences
+of ignoring measurement error or misclassification are known in many
+settings, at least in theory. Moreover, a huge variety of methods to
+appropriately deal with measurement error exist, and several textbooks
+in statistics are devoted to the topic
+\citep{fuller1987, gustafson2004, carroll.etal2006, yi2017}. Despite
+this, many of error modelig methods go largely unused. Why is this the
+case? We can only hypothesize about the reasons, but the problem might
+have many factes. On one hand, measurement error is often nothing that
+seems worth paying attention to, and given that even most introductory
+textbooks in applied statistics do not discuss measurement error, it is
+not surprising that entire generations of young scientists get educated
+in statistics and data analysis without ever having hard of it. On the
+other hand, error modeling methods can quickly become very challenging.
+Unless the problem is a very standard case, it is often necessary to
+formulate a new model, and it may be all but obvious what the model
+should be, let alone how to fit it. But even if the error model is
+relatively simple, like a standard classical measurement model in a
+covariate of a regression model (see Section \ref{sec:errortypes}), some
+extra-effort and special software (R) packages are required. As a
+consequence, the hurdle to get started with the proper handling of
+measurement error in data is much higher than using the standard tools
+for regression modeling.
+
+readily-available software solutions to fit the model are no
 
 When we say ``error'', we do not only mean actual mistakes in the data
 that are used to fit regression models.
 
-kind of uncertainty, noise or that are present in the data that we use
-to fit our models.
+Kind of uncertainty, noise or imprecision that are present in the data
+that we use to fit our models.
 
-\begin{itemize}
-\tightlist
-\item
-  A ton of methods exist
-\item
-  They go largely unused
-\item
-  Possible reasons:
-
-  \begin{itemize}
-  \tightlist
-  \item
-    Problems and methods unknown\\
-  \item
-    Often assumed that effect estimates are conservative
-  \item
-    Solutions often complicated
-  \item
-    Methods not accessible
-  \end{itemize}
-\end{itemize}
+\section{Whom is this book for?}\label{whom-is-this-book-for}
 
 N. Breslow, \emph{Lessons in Biostatistics} (2014) \citep{breslow2014}
 wrote
@@ -260,9 +267,9 @@ Book}\label{take-home-messages-of-this-book}
 
 What we are going to do.
 
-\chapter{Types of Errors}\label{errortypes}
+\chapter{Types of Errors}\label{types-of-errors}
 
-\section{Continuous Variables}\label{continuous-variables}
+\section{Continuous Variables}\label{sec:errortypes}
 
 Two fundamentally different error types
 
