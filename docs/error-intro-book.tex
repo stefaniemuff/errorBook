@@ -125,7 +125,7 @@
   \postauthor{\par}
   \predate{\centering\large\emph}
   \postdate{\par}
-  \date{2018-12-22}
+  \date{2019-03-28}
 
 \usepackage{booktabs}
 \usepackage{amsthm}
@@ -214,7 +214,7 @@ Obviously, {[}. . .{]} the \emph{best} method of dealing with
 measurement error was to avoid it.
 \end{quote}
 
-I say:
+We say:
 
 \begin{quote}
 The \emph{second best} method of dealing with measurement error is to
@@ -241,23 +241,92 @@ Follow us on Twitter!
 
 \section{What is Error?}\label{what-is-error}
 
-Explain that measurement error often comes in the shape of uncertainty,
-which is present in almost all data.
+In our interactions with applied scientists, we sometimes realized that
+``error'' is either regarded as something systematic, in the sense of a
+bias, or as the result of an erroneous step during data collection, like
+writing down a wrong number into the lab journal. However, the
+measurement error that we are talking about in this book is something
+much more universal. It should me understood as an \emph{uncertainty} of
+measurements, which, so some degree, is present in virtually all data.
+To paraphrase Max Planck (in \emph{The Meaning and Limits of Exact
+Science}, 1949):
 
-\section{Why and When do I Have to
-Worry?}\label{why-and-when-do-i-have-to-worry}
+\begin{quote}
+Measurement error is an uncertainty in our recording of Nature's answer
+to our questions
+\end{quote}
+
+Measurement error is caused by in wide variety of reasons, such as
 
 \begin{itemize}
 \tightlist
 \item
-  Triple whammy of ME
+  Measurement \emph{imprecision} in the field or the lab, which may
+  arise due to limited accuracy of an instrument, or because the
+  targeted value is difficult to measure or volatile, for example blood
+  pressure, body weight etc.
 \item
-  When is error a problem?
+  \emph{Incomplete} or \emph{biased} observations, for example due to
+  preferential sampling.
 \item
-  Bias versus variance
+  Misclassification of categorical variables.
 \item
-  Is it sometimes better not to model the error?
+  Misassigned paternities in pedigrees.
+\item
+  Rounding or digit preference.
+\item
+  Temporal or spatial misalignments of observations, e.g.~in interval
+  samples GPS observations of telemetry studies.
 \end{itemize}
+
+This is of course by no means a comprehensive list, and we are sure many
+readers could immediately come up with more examples. We put on the
+record that measurement errors should not, in generaly, merely be seen
+as `mistakes', but as uncertainty that is inherently present due to the
+limitations of how we collect information in the real world.
+
+\section{Why and When do I Have to
+Worry?}\label{why-and-when-do-i-have-to-worry}
+
+An important question, and one that is central to this book, concerns
+the effect measurement error in the data, given that the aim is to
+estimate the parameters of a model. Measurement error has essentialy
+three effects, which \citet{carroll.etal2006} denote as the
+\textbf{Triple Whammy of Measurement Error}:
+
+\begin{itemize}
+\tightlist
+\item
+  Parameter estimators of statistical models are biased.
+\item
+  It leads to loss of statistical power to detect relationships.
+\item
+  Features of the data are masked in graphical analyses.
+\end{itemize}
+
+To be illustrated with simple and/or real examples for classical
+measurement error, with reference to Section \ref{sec:errortypescl}.
+
+Further points
+
+\subsection{When is Error a Problem?}\label{when-is-error-a-problem}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Bias Versus Variance}\label{bias-versus-variance}
+
+Todo: Look at bias vs variance part in Carroll book, but then point out
+that the (typically) larger variance is also the more \emph{honest}
+estimate, because error obscures information, and by ignoring it we
+pretend to be more certain about a (potentially biased) estimate than we
+really are.
+
+\subsection{Is it sometimes better not to model the
+error?}\label{is-it-sometimes-better-not-to-model-the-error}
 
 It is surprising how many phenomena in statistics and its applications
 can be viewed through the measurement error lens. A prominant example is
@@ -267,9 +336,15 @@ will explain in Section \ref{sec:heritability}.
 \section{Organization and Take-Home Messages of This
 Book}\label{organization-and-take-home-messages-of-this-book}
 
-\section{Outlook}\label{outlook}
-
-What we are going to do, outlook to chapters.
+\begin{itemize}
+\tightlist
+\item
+  How the book is organized
+\item
+  Examples and R code (how will it be made available?)
+\item
+  What we are going to do, outlook to chapters.
+\end{itemize}
 
 \chapter{Types of Errors}\label{types-of-errors}
 
@@ -285,10 +360,9 @@ variables, differential vs non-differential error. Maybe more?
 
 Two fundamentally different error types
 
-\subsection{Classical Measurement
-Error}\label{classical-measurement-error}
+\subsection{Classical Measurement Error}\label{sec:errortypescl}
 
-\subsection{Berkson Measurement Error}\label{berkson-measurement-error}
+\subsection{Berkson Measurement Error}\label{sec:errortypesB}
 
 \section{Categorical and Count
 Variables}\label{categorical-and-count-variables}
@@ -301,25 +375,39 @@ Error}\label{effects}}
 
 We will look into effects of ME in the linear regression case.
 
-\section{Classical Measurement
-Error}\label{classical-measurement-error-1}
+\section{Classical Measurement Error}\label{classical-measurement-error}
 
 \section{The Concept of Heritability, Regression to the Mean and
 Measurement Error}\label{sec:heritability}
 
 Geneticists, evolutionary biologists and animal breeders will be
-familiar with the concept of \emph{heritability} \eqref{eq:heritability}.
+familiar with the concept of \emph{heritability} (\(h^2\)), defined as
+the proportion of additive genetic variance (\(\sigma_A^2\)) to total
+phenotypic variance (\(\sigma_P^2\)) of all trait observations in a
+population of interest \eqref{eq:heritability}.
 
 \begin{equation}
-h^2 = \frac{\sigma_A^2}{\sigma_A^2 + \sigma_E^2}
+h^2 = \frac{\sigma_A^2}{\sigma_P^2}
 \label{eq:heritability}
 \end{equation}
 
+At its core, the above definition of heritability implies that the
+observed phenotype \(P\) of a trait of interest (e.g.~body height) can
+be decomposed into the sum of two independent components, namely
+additive genetic effects \(A\) and an environmental component \(E\),
+that is \(P = A + E\) , where \(A\) has variance \(\sigma_A^2\) and
+\(E\) has variance \(\sigma^2_E\). The independency assumption between
+\(A\) and \(E\) implies that phenotypic variance (\(\sigma_P^2\)) can be
+split into additive genetic variance (\(\sigma_A^2\)) and an
+environmental variance (\(\sigma_E^2\)).
+
 \begin{itemize}
-\tightlist
+\item
+  Explain why and how parent-offspring regression can be used to
+  estimate \(h^2\).
 \item
   Will use data in Figures \ref{fig:galton1} and \ref{fig:galton2} to
-  explain regression to the mean
+  explain regression to the mean.
 \end{itemize}
 
 \begin{figure}
@@ -340,9 +428,12 @@ h^2 = \frac{\sigma_A^2}{\sigma_A^2 + \sigma_E^2}
 \caption{Data drawn from `http://www.math.uah.edu/stat/data/Galton.txt`}\label{fig:galton2}
 \end{figure}
 
+The environmental component can be interpreted as the `'measurement
+error'', because it is the component that obscures the genetic merit.
+
 \citep{fuller1987, galton1886}
 
-\section{Berkson Measurement Error}\label{berkson-measurement-error-1}
+\section{Berkson Measurement Error}\label{berkson-measurement-error}
 
 \section{Error in Categorical and Count
 Variables}\label{error-in-categorical-and-count-variables}
@@ -382,6 +473,8 @@ Error}\label{accounting}}
 \chapter{Survival Models}\label{Survival}
 
 \chapter{Advanced Topics}\label{advancedTopics}
+
+\section{Rounding Error}\label{rounding-error}
 
 \section{Misalignement Error in Spatial
 Data}\label{misalignement-error-in-spatial-data}
