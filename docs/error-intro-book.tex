@@ -125,7 +125,7 @@
   \postauthor{\par}
   \predate{\centering\large\emph}
   \postdate{\par}
-  \date{2019-03-28}
+  \date{2019-05-14}
 
 \usepackage{booktabs}
 \usepackage{amsthm}
@@ -242,7 +242,7 @@ Follow us on Twitter!
 \section{What is Error?}\label{what-is-error}
 
 In our interactions with applied scientists, we sometimes realized that
-``error'' is either regarded as something systematic, in the sense of a
+`'error'' is either regarded as something systematic, in the sense of a
 bias, or as the result of an erroneous step during data collection, like
 writing down a wrong number into the lab journal. However, the
 measurement error that we are talking about in this book is something
@@ -256,7 +256,10 @@ Measurement error is an uncertainty in our recording of Nature's answer
 to our questions
 \end{quote}
 
-Measurement error is caused by in wide variety of reasons, such as
+When measurement error is understood as the uncertainty that remains
+about an entity \emph{after} a measurement of that entity was taken, it
+becomes obvious that measurement error may originate due to a wide
+variety of reasons, such as
 
 \begin{itemize}
 \tightlist
@@ -282,8 +285,16 @@ Measurement error is caused by in wide variety of reasons, such as
 This is of course by no means a comprehensive list, and we are sure many
 readers could immediately come up with more examples. We put on the
 record that measurement errors should not, in generaly, merely be seen
-as `mistakes', but as uncertainty that is inherently present due to the
-limitations of how we collect information in the real world.
+as `'mistakes'', but as uncertainty that is inherently present due to
+the limitations of our ability to collect information in the real world.
+
+It is surprising how many phenomena in statistics and its applications
+can be viewed through the measurement error lens. Prominant examples are
+the concept of heritability in genetics and evolutionary biology, as we
+will explain in Section \ref{sec:heritability}, or the fact that
+omitting informative covariates in regression models is analogous to
+introducing a certain type of measurement error, the Berkson error,
+which we will introduce in Section \ref{sec:errortypesB}.
 
 \section{Why and When do I Have to
 Worry?}\label{why-and-when-do-i-have-to-worry}
@@ -307,9 +318,21 @@ three effects, which \citet{carroll.etal2006} denote as the
 To be illustrated with simple and/or real examples for classical
 measurement error, with reference to Section \ref{sec:errortypescl}.
 
-Further points
-
 \subsection{When is Error a Problem?}\label{when-is-error-a-problem}
+
+This is a question practicioners often ask. It is, however, impossible
+to give general guidelines about when measurement error is ``severe''
+enough to affect parameters estimates and conclusions drawn from an
+analysis in a way that cannot be tolerated. A rather universal advice we
+can give is to simulate data from the model at hand, and check what
+happens to the estimated parameters and their standard errors when error
+of the type that is expected is added to the error-prone variables. Of
+course, this already requires a rough understanding of the error model
+at hand, but without such a model it is anyway elusive to hypothesize
+about the effect of the error.
+
+Let us look at a very simple simulation setup for a linear regression
+model, with a covariate \(x\) and a response \(y\).
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -328,10 +351,15 @@ really are.
 \subsection{Is it sometimes better not to model the
 error?}\label{is-it-sometimes-better-not-to-model-the-error}
 
-It is surprising how many phenomena in statistics and its applications
-can be viewed through the measurement error lens. A prominant example is
-the concept of heritability in genetics and evolutionary biology, as we
-will explain in Section \ref{sec:heritability}.
+\begin{itemize}
+\tightlist
+\item
+  If error is unknown, correction can go in the wrong direction
+\item
+  Therefore it is crucial to find an error model
+\item
+  Plan right during data collection process
+\end{itemize}
 
 \section{Organization and Take-Home Messages of This
 Book}\label{organization-and-take-home-messages-of-this-book}
