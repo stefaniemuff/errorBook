@@ -241,15 +241,16 @@ Follow us on Twitter!
 
 \section{What is Error?}\label{what-is-error}
 
-In our interactions with applied scientists, we sometimes realized that
+In our interactions with applied scientists, we often realize that
 `'error'' is either regarded as something systematic, in the sense of a
-bias, or as the result of an erroneous step during data collection, like
-writing down a wrong number into the lab journal. However, the
-measurement error that we are talking about in this book is something
-much more universal. It should me understood as an \emph{uncertainty} of
-measurements, which, so some degree, is present in virtually all data.
-To paraphrase Max Planck (in \emph{The Meaning and Limits of Exact
-Science}, 1949):
+bias, potentially due to an inherent problem in the data collection
+process, or as the result of an erroneous step when data are handled and
+stored, like writing down a wrong number into the lab journal. However,
+the measurement error that we are talking about in this book is
+something much more universal. It should me understood as an
+\emph{uncertainty} of measurements, which, so some degree, is present in
+virtually all data. To paraphrase Max Planck (in \emph{The Meaning and
+Limits of Exact Science}, 1949):
 
 \begin{quote}
 Measurement error is an uncertainty in our recording of Nature's answer
@@ -272,14 +273,19 @@ variety of reasons, such as
   \emph{Incomplete} or \emph{biased} observations, for example due to
   preferential sampling.
 \item
-  Misclassification of categorical variables.
-\item
-  Misassigned paternities in pedigrees.
+  Misclassification of categorical variables, e.g.~when deciding if a
+  disease is present or not.
 \item
   Rounding or digit preference.
 \item
   Temporal or spatial misalignments of observations, e.g.~in interval
   samples GPS observations of telemetry studies.
+\item
+  Measurement of an entity of interest by taking measurements on a
+  substitute, e.g.
+\item
+  Self-reporting of numbers, e.g.~by patients in medicine or in food
+  behaviour studies. 
 \end{itemize}
 
 This is of course by no means a comprehensive list, and we are sure many
@@ -321,24 +327,78 @@ measurement error, with reference to Section \ref{sec:errortypescl}.
 \subsection{When is Error a Problem?}\label{when-is-error-a-problem}
 
 This is a question practicioners often ask. It is, however, impossible
-to give general guidelines about when measurement error is ``severe''
+to give general guidelines about when measurement error is `'severe''
 enough to affect parameters estimates and conclusions drawn from an
 analysis in a way that cannot be tolerated. A rather universal advice we
 can give is to simulate data from the model at hand, and check what
-happens to the estimated parameters and their standard errors when error
-of the type that is expected is added to the error-prone variables. Of
-course, this already requires a rough understanding of the error model
-at hand, but without such a model it is anyway elusive to hypothesize
-about the effect of the error.
+happens to the estimated parameters, standard errors and - more broadly
+- the conclusions that are drawn when error of the type that is expected
+is artificially generated in the error-prone variables. Of course, this
+already requires a rough understanding of the error model at hand, but
+without such a model it is anyway elusive to hypothesize about the
+effect of the error.
 
 Let us look at a very simple simulation setup for a linear regression
-model, with a covariate \(x\) and a response \(y\).
+model, with a covariate \(x\sim\mathsf{N}(0,1)\) and a response \(y\),
+generated according to the simple regression model
+\[y = \beta_0 + \beta_x x + \epsilon \ , \quad \epsilon \sim \mathsf{N}(0,1) \ ,\]
+with \(\beta_0=\beta_x=1\).
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{1234}\NormalTok{)}
 \NormalTok{x <-}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{)}
+\NormalTok{y <-}\StringTok{ }\DecValTok{1} \OperatorTok{+}\StringTok{ }\NormalTok{x }\OperatorTok{+}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{)}
+\KeywordTok{summary}\NormalTok{(}\KeywordTok{lm}\NormalTok{(y}\OperatorTok{~}\NormalTok{x))}\OperatorTok{$}\NormalTok{coef}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+##              Estimate Std. Error  t value     Pr(>|t|)
+## (Intercept) 1.0371541  0.1049788 9.879657 2.208449e-16
+## x           0.9739151  0.1037759 9.384789 2.620462e-15
+\end{verbatim}
+
+Now let us add measurement error to the \(x\) covariate, namely by
+assuming we see a variable \(w = x +u,\) which is an error-prone version
+of \(x\) with measurement error \(u\sim\mathsf{N}(0,\sigma_u^2)\) and
+measurement error variance \(\sigma_u^2=1\). This is a so-called
+classical measurement error model (see Section \ref{sec:errortypescl}),
+which is known to attenuate the estimated slope parameters, as can be
+verified by a simple simulation. Let us generate an error-prone version
+\(w\) and then regress \(y\) against \(w\):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{w <-}\StringTok{ }\NormalTok{x }\OperatorTok{+}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{)}
+\KeywordTok{summary}\NormalTok{(}\KeywordTok{lm}\NormalTok{(y}\OperatorTok{~}\NormalTok{w))}\OperatorTok{$}\NormalTok{coef}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##              Estimate Std. Error  t value     Pr(>|t|)
+## (Intercept) 0.8856732 0.11826999 7.488571 3.076746e-11
+## w           0.5522517 0.08225006 6.714301 1.240119e-09
+\end{verbatim}
+
+We see that that estimated slope for \(w\), \(\hat\beta_w=0.55\) is much
+smaller than the actual slope \(\hat\beta_x=0.97\) that was estimated in
+the regression of \(y\) against \(x\). This severe bias occurs because
+we have assumed that the error variance is as large as the actual
+variance of the true covariate (\(\sigma_u^2=\sigma_x^2=1\)), which may
+not necessarily by realistic in practical applications. In any case, by
+playing with the error variance \(\sigma_u^2\), the user can generate a
+feeling for the effect of the error at hand. A simulation for this
+simple linear regression model with classical error has been implemented
+in a Shiny app (see \ref{sec:clErrorEffect}). Note, however, that the
+situation in applications is typically quite a bit more complicated.
+
+When it comes to the decision whether one should worry or not, we
+strongly believe this depends on the context. Ideally, the user has
+pre-specified which effects can be tolerated \emph{before} actually
+simulating the error, and it can then be decided whether the effect is
+negligible in that sense. Otherwise, the error must be accounted for by
+an appropriate error model. In that case, this book is for you!
 
 \subsection{Bias Versus Variance}\label{bias-versus-variance}
 
@@ -403,7 +463,7 @@ Error}\label{effects}}
 
 We will look into effects of ME in the linear regression case.
 
-\section{Classical Measurement Error}\label{classical-measurement-error}
+\section{Classical Measurement Error}\label{sec:clErrorEffect}
 
 \section{The Concept of Heritability, Regression to the Mean and
 Measurement Error}\label{sec:heritability}
